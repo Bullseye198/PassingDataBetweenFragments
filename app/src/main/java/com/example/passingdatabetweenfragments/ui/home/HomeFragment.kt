@@ -6,13 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -20,18 +18,23 @@ import androidx.navigation.fragment.findNavController
 import com.example.passingdatabetweenfragments.Money
 import com.example.passingdatabetweenfragments.R
 import com.example.passingdatabetweenfragments.databinding.FragmentHomeBinding
+import com.example.passingdatabetweenfragments.dependencyInjection.ViewModelFactory
+import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_home.*
-import java.lang.Exception
-import java.lang.reflect.Type
+import javax.inject.Inject
 
-class HomeFragment : Fragment(), View.OnClickListener {
+class HomeFragment : DaggerFragment(), View.OnClickListener {
 
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var mBinding: FragmentHomeBinding
 
     var recipient: String? = null
     var money: Money? = null
 
     var navController: NavController? = null
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,14 +65,12 @@ class HomeFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
+        mBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        homeViewModel = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+            mBinding.textHome.text = it
         })
-        return root
+        return mBinding.root
     }
 
     override fun onClick(v: View?) {

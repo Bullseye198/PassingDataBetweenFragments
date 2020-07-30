@@ -1,7 +1,10 @@
 package com.example.passingdatabetweenfragments.ui.secondfragment
 
 import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
-class SecondViewModel : ViewModel() {
+class SecondViewModel @Inject constructor(
+
+) : ViewModel() {
 
 }
