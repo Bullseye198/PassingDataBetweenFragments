@@ -38,7 +38,7 @@ class HomeFragment : Fragment(), View.OnClickListener {
         try {
             recipient = requireArguments().getString("recipient")!!
             money = requireArguments().getParcelable("amount")!!
-        } catch (e:Exception) {
+        } catch (e: Exception) {
             val x = e
         }
     }
@@ -47,6 +47,10 @@ class HomeFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         navController = Navigation.findNavController(view)
         view.findViewById<Button>(R.id.button).setOnClickListener(this)
+        view.findViewById<Button>(R.id.btnFragment2).setOnClickListener {
+            val direction = HomeFragmentDirections.actionNavHomeToSecondFragment()
+            findNavController().navigate(direction)
+        }
 
         val amount = money?.amount
         val confirmationMessage = "You have sent $amount Euro to $recipient."

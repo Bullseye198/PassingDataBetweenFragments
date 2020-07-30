@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_gallery"
             app:destination="@id/nav_gallery" />
+        <action
+            android:id="@+id/action_nav_home_to_secondFragment"
+            app:destination="@id/secondFragment" />
     </fragment>
 
     <fragment
@@ -36,4 +39,9 @@
             android:name="amount"
             app:argType="com.example.passingdatabetweenfragments.Money" />
     </fragment>
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.example.passingdatabetweenfragments.ui.secondfragment.SecondFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_second" />
 </navigation>
