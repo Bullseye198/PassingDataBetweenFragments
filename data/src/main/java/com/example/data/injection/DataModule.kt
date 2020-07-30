@@ -1,6 +1,6 @@
 package com.example.data.injection
 
-import com.example.data.switch.SwitchRepoImpl
+import com.example.data.number.SwitchRepoImpl
 import com.example.domain.model.SwitchRepository
 import dagger.Binds
 import dagger.Module
