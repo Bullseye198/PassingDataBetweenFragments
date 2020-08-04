@@ -9,9 +9,13 @@ class SwitchRepoImpl @Inject constructor(
 
 ) : SwitchRepository {
 
-    lateinit var numberOfSwitches: MutableList<Long>
+    private var numberOfSwitches: Long? = null
 
-    override suspend fun setNumberOfSwitches(number: Long) {
-        numberOfSwitches.add(number)
+    override suspend fun setNumberOfSwitches(number: Long): Long? {
+        return numberOfSwitches?.plus(number)
+    }
+
+    override suspend fun getNumberOfSwitches(getNumber: Long): Long? {
+        return setNumberOfSwitches(getNumber)
     }
 }

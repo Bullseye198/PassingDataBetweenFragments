@@ -8,7 +8,6 @@ import javax.inject.Inject
 
 class SecondViewModel @Inject constructor(
     private var setNumberOfSwitchesUseCase: SetNumberOfSwitchesUseCase
-
 ) : ViewModel() {
 
     fun setNumberOfSwitches(number: Long) {

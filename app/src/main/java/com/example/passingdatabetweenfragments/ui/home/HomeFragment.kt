@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
@@ -58,6 +57,11 @@ class HomeFragment : DaggerFragment(), View.OnClickListener {
         val amount = money?.amount
         val confirmationMessage = "You have sent $amount Euro to $recipient."
         view.findViewById<TextView>(R.id.txtHomeResult).text = confirmationMessage
+
+        val getNumberOfSwitches = Long
+
+
+        print(getNumberOfSwitches)
     }
 
     override fun onCreateView(
