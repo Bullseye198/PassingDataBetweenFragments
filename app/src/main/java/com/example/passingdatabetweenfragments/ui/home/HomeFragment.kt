@@ -58,10 +58,17 @@ class HomeFragment : DaggerFragment(), View.OnClickListener {
         val confirmationMessage = "You have sent $amount Euro to $recipient."
         view.findViewById<TextView>(R.id.txtHomeResult).text = confirmationMessage
 
-        val getNumberOfSwitches = Long
+        homeViewModel.getNumberOfSwitchesFromRepo()
+        observeViewModel()
+    }
 
-
-        print(getNumberOfSwitches)
+    private fun observeViewModel() {
+        homeViewModel.getNumberOfSwitches().observe(viewLifecycleOwner, Observer { switches ->
+            if (switches != null) {
+                val text = "Number of switches from fragment two is $switches"
+                mBinding.txtNumberOfSwitches.text = text
+            }
+        })
     }
 
     override fun onCreateView(

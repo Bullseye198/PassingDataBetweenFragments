@@ -7,7 +7,7 @@ class GetNumberOfSwitchesUseCase @Inject constructor(
     private val switchRepository: SwitchRepository
 ) {
 
-    suspend fun getNumber(getNumber: Long): Long? {
-        return switchRepository.getNumberOfSwitches(getNumber)
+    suspend fun getNumber(): Long {
+        return switchRepository.getNumberOfSwitches()
     }
 }

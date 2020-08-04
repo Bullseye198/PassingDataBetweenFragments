@@ -9,13 +9,13 @@ class SwitchRepoImpl @Inject constructor(
 
 ) : SwitchRepository {
 
-    private var numberOfSwitches: Long? = null
+    private var numberOfSwitches: Long = 0L
 
-    override suspend fun setNumberOfSwitches(number: Long): Long? {
-        return numberOfSwitches?.plus(number)
+    override suspend fun setNumberOfSwitches(number: Long) {
+        numberOfSwitches = number
     }
 
-    override suspend fun getNumberOfSwitches(getNumber: Long): Long? {
-        return setNumberOfSwitches(getNumber)
+    override suspend fun getNumberOfSwitches(): Long {
+        return numberOfSwitches
     }
 }
