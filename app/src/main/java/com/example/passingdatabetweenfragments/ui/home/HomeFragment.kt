@@ -61,16 +61,17 @@ class HomeFragment : DaggerFragment(), View.OnClickListener {
         homeViewModel.getNumberOfSwitchesFromRepo()
         observeViewModel()
         homeViewModel.getNumberOfSelectedSwitchesFromRepo()
-        homeViewModel.getSelectedNumberOfSwitches().observe(viewLifecycleOwner, Observer { selectedSwitches ->
-                val text = "Number of selected switches is ${selectedSwitches.size}"
+        homeViewModel.getSelectedNumberOfSwitches()
+            .observe(viewLifecycleOwner, Observer { selectedSwitches ->
+                val text = "Number of selected switches from fragment two: ${selectedSwitches.size}"
                 mBinding.txtNumberOfSelectedSwitches.text = text
-        })
+            })
     }
 
     private fun observeViewModel() {
         homeViewModel.getNumberOfSwitches().observe(viewLifecycleOwner, Observer { switches ->
             if (switches != null) {
-                val text = "Number of switches from fragment two is $switches"
+                val text = "Number of total switches from fragment two: $switches"
                 mBinding.txtNumberOfSwitches.text = text
             }
         })

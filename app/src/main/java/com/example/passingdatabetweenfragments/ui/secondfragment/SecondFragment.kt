@@ -8,12 +8,10 @@ import android.widget.Switch
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.example.passingdatabetweenfragments.R
 import com.example.passingdatabetweenfragments.databinding.FragmentSecondBinding
 import com.example.passingdatabetweenfragments.dependencyInjection.ViewModelFactory
 import dagger.android.support.DaggerFragment
-import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
 
 class SecondFragment : DaggerFragment() {
@@ -41,8 +39,7 @@ class SecondFragment : DaggerFragment() {
         viewModel.getNumberOfSelectedSwitchesFromRepo()
         showCheckedSwitches()
 
-
-        val switches = listOf<Switch>(
+        val switches = listOf(
             mBinding.switch1,
             mBinding.switch2,
             mBinding.switch3,
@@ -60,6 +57,7 @@ class SecondFragment : DaggerFragment() {
                 isChecked = true
                 viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             } else {
+                switchId = mBinding.switch1.id
                 isChecked = false
                 viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             }
@@ -71,6 +69,7 @@ class SecondFragment : DaggerFragment() {
                 isChecked = true
                 viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             } else {
+                switchId = mBinding.switch2.id
                 isChecked = false
                 viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             }
@@ -82,6 +81,7 @@ class SecondFragment : DaggerFragment() {
                 isChecked = true
                 viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             } else {
+                switchId = mBinding.switch3.id
                 isChecked = false
                 viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             }
@@ -93,6 +93,7 @@ class SecondFragment : DaggerFragment() {
                 isChecked = true
                 viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             } else {
+                switchId = mBinding.switch4.id
                 isChecked = false
                 viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             }

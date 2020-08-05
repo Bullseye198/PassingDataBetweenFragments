@@ -19,6 +19,7 @@ import com.example.passingdatabetweenfragments.R
 import com.example.passingdatabetweenfragments.dependencyInjection.ViewModelFactory
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_gallery.*
+import java.lang.Exception
 import java.math.BigDecimal
 import javax.inject.Inject
 
@@ -27,14 +28,17 @@ class GalleryFragment : DaggerFragment(), View.OnClickListener {
     private lateinit var galleryViewModel: GalleryViewModel
     var navController: NavController? = null
 
-    lateinit var recipient: String
+    private var recipient: String? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        recipient = requireArguments().getString("recipient")!!
+        try {
+            recipient = requireArguments().getString("recipient")!!
+        } catch (e: Exception) {
+        }
     }
 
     override fun onCreateView(

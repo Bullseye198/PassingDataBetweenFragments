@@ -15,8 +15,11 @@ class SecondViewModel @Inject constructor(
     private var getNumberOfSelectedSwitchesUseCase: GetNumberOfSelectedSwitchesUseCase
 ) : ViewModel() {
 
-    private val getNumberOfSelectedSwitchesLiveData: MutableLiveData<MutableList<Int>> = MutableLiveData()
-    fun getSelectedNumberOfSwitches(): MutableLiveData<MutableList<Int>> = getNumberOfSelectedSwitchesLiveData
+    private val getNumberOfSelectedSwitchesLiveData: MutableLiveData<MutableList<Int>> =
+        MutableLiveData()
+
+    fun getSelectedNumberOfSwitches(): MutableLiveData<MutableList<Int>> =
+        getNumberOfSelectedSwitchesLiveData
 
     fun setNumberOfSwitches(number: Long) {
         viewModelScope.launch {

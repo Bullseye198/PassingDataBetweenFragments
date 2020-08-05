@@ -10,6 +10,7 @@ class SwitchRepoImpl @Inject constructor(
 ) : SwitchRepository {
 
     private var numberOfSwitches: Long = 0L
+    private var selectedSwitchesEnabled: Boolean = false
     private var selectedSwitches = mutableListOf<Int>()
 
     override suspend fun setNumberOfSwitches(number: Long) {
@@ -22,8 +23,10 @@ class SwitchRepoImpl @Inject constructor(
 
     override suspend fun setNumberOfSelectedSwitches(isEnabled: Boolean, id: Int) {
         if (!selectedSwitches.contains(id) && isEnabled) {
+            selectedSwitchesEnabled = isEnabled
             selectedSwitches.add(id)
         } else {
+            selectedSwitchesEnabled = isEnabled
             selectedSwitches.remove(id)
         }
     }

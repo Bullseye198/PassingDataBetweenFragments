@@ -11,22 +11,26 @@ import com.example.passingdatabetweenfragments.Money
 import com.example.passingdatabetweenfragments.R
 import com.example.passingdatabetweenfragments.dependencyInjection.ViewModelFactory
 import dagger.android.support.DaggerFragment
+import java.lang.Exception
 import javax.inject.Inject
 
 class SlideshowFragment : DaggerFragment() {
 
     private lateinit var slideshowViewModel: SlideshowViewModel
 
-    lateinit var recipient: String
-    lateinit var money: Money
+    private var recipient: String? = null
+    private var money: Money? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        recipient = requireArguments().getString("recipient")!!
-        money = requireArguments().getParcelable("amount")!!
+        try {
+            recipient = requireArguments().getString("recipient")!!
+            money = requireArguments().getParcelable("amount")!!
+        } catch (e: Exception) {
+        }
     }
 
     override fun onCreateView(
@@ -46,7 +50,7 @@ class SlideshowFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val amount = money.amount
+        val amount = money?.amount
         val confirmationMessage = "You have sent $amount Euro to $recipient."
         view.findViewById<TextView>(R.id.txtResult).text = confirmationMessage
     }
