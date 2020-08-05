@@ -6,6 +6,8 @@ interface SwitchRepository {
 
     suspend fun getNumberOfSwitches(): Long
 
+    suspend fun setNumberOfSelectedSwitches(isEnabled: Boolean, id: Int)
+
     suspend fun getNumberOfSelectedSwitches(): Int
 
     suspend fun increaseNumberOfSwitches()

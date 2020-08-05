@@ -11,6 +11,8 @@ class SwitchRepoImpl @Inject constructor(
 
     private var numberOfSwitches: Long = 0L
     private var numberOfSelectedSwitches : Int = 0
+    private var isChecked: Boolean? = null
+    private var switchId: Int = 0
 
     override suspend fun setNumberOfSwitches(number: Long) {
         numberOfSwitches = number
@@ -18,6 +20,14 @@ class SwitchRepoImpl @Inject constructor(
 
     override suspend fun getNumberOfSwitches(): Long {
         return numberOfSwitches
+    }
+
+    override suspend fun setNumberOfSelectedSwitches(isEnabled: Boolean, id: Int) {
+        if (isEnabled) {
+            switchId = id
+            isChecked = isEnabled
+            print("$isChecked $switchId")
+        }
     }
 
     override suspend fun getNumberOfSelectedSwitches(): Int {

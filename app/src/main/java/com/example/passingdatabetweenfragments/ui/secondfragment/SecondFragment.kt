@@ -18,6 +18,8 @@ class SecondFragment : DaggerFragment() {
 
     private lateinit var viewModel: SecondViewModel
     private lateinit var mBinding: FragmentSecondBinding
+    private var isChecked: Boolean = false
+    private var switchId: Int = 0
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -49,6 +51,9 @@ class SecondFragment : DaggerFragment() {
 
         mBinding.switch1.setOnClickListener {
             if (mBinding.switch1.isChecked) {
+                switchId = mBinding.switch1.id
+                isChecked = true
+                viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
                 viewModel.increaseNumberOfSwitches()
             } else {
                 viewModel.decreaseNumberOfSwitches()
