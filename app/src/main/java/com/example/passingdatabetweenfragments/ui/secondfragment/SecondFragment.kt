@@ -13,6 +13,7 @@ import com.example.passingdatabetweenfragments.R
 import com.example.passingdatabetweenfragments.databinding.FragmentSecondBinding
 import com.example.passingdatabetweenfragments.dependencyInjection.ViewModelFactory
 import dagger.android.support.DaggerFragment
+import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
 
 class SecondFragment : DaggerFragment() {
@@ -91,17 +92,28 @@ class SecondFragment : DaggerFragment() {
                 switchId = mBinding.switch4.id
                 isChecked = true
                 viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
-             //   viewModel.increaseNumberOfSwitches()
             } else {
                 isChecked = false
                 viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
-                //   viewModel.decreaseNumberOfSwitches()
             }
         }
     }
 
     private fun showCheckedSwitches() {
-        viewModel.getSelectedNumberOfSwitches().observe(viewLifecycleOwner, Observer { t -> println(t.size)
+        val switchesIds = listOf(
+            mBinding.switch1.id,
+            mBinding.switch2.id,
+            mBinding.switch3.id,
+            mBinding.switch4.id
+        )
+        viewModel.getSelectedNumberOfSwitches().observe(viewLifecycleOwner, Observer { t ->
+
+            println("IDs from All switches: $switchesIds")
+            println("IDs from selected switches: $t")
+            mBinding.switch1.isChecked = t.contains(mBinding.switch1.id)
+            mBinding.switch2.isChecked = t.contains(mBinding.switch2.id)
+            mBinding.switch3.isChecked = t.contains(mBinding.switch3.id)
+            mBinding.switch4.isChecked = t.contains(mBinding.switch4.id)
 
         })
     }
