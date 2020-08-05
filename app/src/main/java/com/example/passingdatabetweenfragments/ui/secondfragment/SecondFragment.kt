@@ -48,7 +48,7 @@ class SecondFragment : DaggerFragment() {
         viewModel.setNumberOfSwitches(switches)
 
         mBinding.switch1.setOnClickListener {
-            if (mBinding.switch1.isEnabled) {
+            if (mBinding.switch1.isChecked) {
                 viewModel.increaseNumberOfSwitches()
             } else {
                 viewModel.decreaseNumberOfSwitches()
@@ -56,7 +56,7 @@ class SecondFragment : DaggerFragment() {
         }
 
         mBinding.switch2.setOnClickListener {
-            if (mBinding.switch2.isEnabled) {
+            if (mBinding.switch2.isChecked) {
                 viewModel.increaseNumberOfSwitches()
             } else {
                 viewModel.decreaseNumberOfSwitches()
@@ -64,7 +64,7 @@ class SecondFragment : DaggerFragment() {
         }
 
         mBinding.switch3.setOnClickListener {
-            if (mBinding.switch3.isEnabled) {
+            if (mBinding.switch3.isChecked) {
                 viewModel.increaseNumberOfSwitches()
             } else {
                 viewModel.decreaseNumberOfSwitches()
@@ -72,7 +72,7 @@ class SecondFragment : DaggerFragment() {
         }
 
         mBinding.switch4.setOnClickListener {
-            if (mBinding.switch3.isEnabled) {
+            if (mBinding.switch4.isChecked) {
                 viewModel.increaseNumberOfSwitches()
             } else {
                 viewModel.decreaseNumberOfSwitches()
