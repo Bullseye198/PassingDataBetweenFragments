@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Switch
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -115,7 +114,6 @@ class SecondFragment : DaggerFragment() {
             mBinding.switch2.isChecked = t.contains(mBinding.switch2.id)
             mBinding.switch3.isChecked = t.contains(mBinding.switch3.id)
             mBinding.switch4.isChecked = t.contains(mBinding.switch4.id)
-
         })
     }
 }
