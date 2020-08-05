@@ -27,10 +27,10 @@ class HomeFragment : DaggerFragment(), View.OnClickListener {
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var mBinding: FragmentHomeBinding
 
-    var recipient: String? = null
-    var money: Money? = null
+    private var recipient: String? = null
+    private var money: Money? = null
 
-    var navController: NavController? = null
+    private var navController: NavController? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -41,7 +41,6 @@ class HomeFragment : DaggerFragment(), View.OnClickListener {
             recipient = requireArguments().getString("recipient")!!
             money = requireArguments().getParcelable("amount")!!
         } catch (e: Exception) {
-            val x = e
         }
     }
 

@@ -107,7 +107,6 @@ class SecondFragment : DaggerFragment() {
             mBinding.switch4.id
         )
         viewModel.getSelectedNumberOfSwitches().observe(viewLifecycleOwner, Observer { t ->
-
             println("IDs from All switches: $switchesIds")
             println("IDs from selected switches: $t")
             mBinding.switch1.isChecked = t.contains(mBinding.switch1.id)
