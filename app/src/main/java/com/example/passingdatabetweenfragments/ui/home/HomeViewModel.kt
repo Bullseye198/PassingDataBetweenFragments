@@ -19,8 +19,8 @@ class HomeViewModel @Inject constructor(
     private val getNumberOfSwitchesLiveData: MutableLiveData<Long> = MutableLiveData()
     fun getNumberOfSwitches(): MutableLiveData<Long> = getNumberOfSwitchesLiveData
 
-    private val getNumberOfSelectedSwitchesLiveData: MutableLiveData<Int> = MutableLiveData()
-    fun getSelectedNumberOfSwitches(): MutableLiveData<Int> = getNumberOfSelectedSwitchesLiveData
+    private val getNumberOfSelectedSwitchesLiveData: MutableLiveData<MutableList<Int>> = MutableLiveData()
+    fun getSelectedNumberOfSwitches(): MutableLiveData<MutableList<Int>> = getNumberOfSelectedSwitchesLiveData
 
     private val _text = MutableLiveData<String>().apply {
         value = "Enter a name"

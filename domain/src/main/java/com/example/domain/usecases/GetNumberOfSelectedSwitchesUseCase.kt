@@ -7,7 +7,7 @@ class GetNumberOfSelectedSwitchesUseCase @Inject constructor(
     private val switchRepository: SwitchRepository
 ) {
 
-    suspend fun getNumberOfSelectedSwitches(): Int {
+    suspend fun getNumberOfSelectedSwitches(): MutableList<Int> {
         return switchRepository.getNumberOfSelectedSwitches()
     }
 }

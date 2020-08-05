@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.passingdatabetweenfragments.R
@@ -36,6 +37,9 @@ class SecondFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getNumberOfSelectedSwitchesFromRepo()
+        showCheckedSwitches()
+
 
         val switches = listOf<Switch>(
             mBinding.switch1,
@@ -54,34 +58,51 @@ class SecondFragment : DaggerFragment() {
                 switchId = mBinding.switch1.id
                 isChecked = true
                 viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
-                viewModel.increaseNumberOfSwitches()
             } else {
-                viewModel.decreaseNumberOfSwitches()
+                isChecked = false
+                viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             }
         }
 
         mBinding.switch2.setOnClickListener {
             if (mBinding.switch2.isChecked) {
-                viewModel.increaseNumberOfSwitches()
+                switchId = mBinding.switch2.id
+                isChecked = true
+                viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             } else {
-                viewModel.decreaseNumberOfSwitches()
+                isChecked = false
+                viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             }
         }
 
         mBinding.switch3.setOnClickListener {
             if (mBinding.switch3.isChecked) {
-                viewModel.increaseNumberOfSwitches()
+                switchId = mBinding.switch3.id
+                isChecked = true
+                viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             } else {
-                viewModel.decreaseNumberOfSwitches()
+                isChecked = false
+                viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
             }
         }
 
         mBinding.switch4.setOnClickListener {
             if (mBinding.switch4.isChecked) {
-                viewModel.increaseNumberOfSwitches()
+                switchId = mBinding.switch4.id
+                isChecked = true
+                viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
+             //   viewModel.increaseNumberOfSwitches()
             } else {
-                viewModel.decreaseNumberOfSwitches()
+                isChecked = false
+                viewModel.setNumberOfSelectedSwitches(isChecked, switchId)
+                //   viewModel.decreaseNumberOfSwitches()
             }
         }
+    }
+
+    private fun showCheckedSwitches() {
+        viewModel.getSelectedNumberOfSwitches().observe(viewLifecycleOwner, Observer { t -> println(t.size)
+
+        })
     }
 }

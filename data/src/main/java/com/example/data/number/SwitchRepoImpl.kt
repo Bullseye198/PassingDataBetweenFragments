@@ -10,9 +10,7 @@ class SwitchRepoImpl @Inject constructor(
 ) : SwitchRepository {
 
     private var numberOfSwitches: Long = 0L
-    private var numberOfSelectedSwitches : Int = 0
-    private var isChecked: Boolean? = null
-    private var switchId: Int = 0
+    private var selectedSwitches = mutableListOf<Int>()
 
     override suspend fun setNumberOfSwitches(number: Long) {
         numberOfSwitches = number
@@ -23,22 +21,14 @@ class SwitchRepoImpl @Inject constructor(
     }
 
     override suspend fun setNumberOfSelectedSwitches(isEnabled: Boolean, id: Int) {
-        if (isEnabled) {
-            switchId = id
-            isChecked = isEnabled
-            print("$isChecked $switchId")
+        if (!selectedSwitches.contains(id) && isEnabled) {
+            selectedSwitches.add(id)
+        } else {
+            selectedSwitches.remove(id)
         }
     }
 
-    override suspend fun getNumberOfSelectedSwitches(): Int {
-        return numberOfSelectedSwitches
-    }
-
-    override suspend fun increaseNumberOfSwitches() {
-        numberOfSelectedSwitches += 1
-    }
-
-    override suspend fun decreaseNumberOfSwitches() {
-        numberOfSelectedSwitches -= 1
+    override suspend fun getNumberOfSelectedSwitches(): MutableList<Int> {
+        return selectedSwitches
     }
 }

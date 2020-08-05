@@ -8,9 +8,5 @@ interface SwitchRepository {
 
     suspend fun setNumberOfSelectedSwitches(isEnabled: Boolean, id: Int)
 
-    suspend fun getNumberOfSelectedSwitches(): Int
-
-    suspend fun increaseNumberOfSwitches()
-
-    suspend fun decreaseNumberOfSwitches()
+    suspend fun getNumberOfSelectedSwitches(): MutableList<Int>
 }
