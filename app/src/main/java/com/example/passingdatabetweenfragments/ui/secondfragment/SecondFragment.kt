@@ -34,15 +34,49 @@ class SecondFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val switch1 = view.findViewById<Switch>(R.id.switch1)
-        val switch2 = view.findViewById<Switch>(R.id.switch2)
-        val switch3 = view.findViewById<Switch>(R.id.switch3)
-        val switch4 = view.findViewById<Switch>(R.id.switch4)
-        val switches = listOf<Switch>(switch1, switch2, switch3, switch4).size.toLong()
+
+        val switches = listOf<Switch>(
+            mBinding.switch1,
+            mBinding.switch2,
+            mBinding.switch3,
+            mBinding.switch4
+        ).size.toLong()
 
         val switchesNum = "Number of switches is: $switches"
         view.findViewById<TextView>(R.id.txtSwitchesNum).text = switchesNum
 
         viewModel.setNumberOfSwitches(switches)
+
+        mBinding.switch1.setOnClickListener {
+            if (mBinding.switch1.isEnabled) {
+                viewModel.increaseNumberOfSwitches()
+            } else {
+                viewModel.decreaseNumberOfSwitches()
+            }
+        }
+
+        mBinding.switch2.setOnClickListener {
+            if (mBinding.switch2.isEnabled) {
+                viewModel.increaseNumberOfSwitches()
+            } else {
+                viewModel.decreaseNumberOfSwitches()
+            }
+        }
+
+        mBinding.switch3.setOnClickListener {
+            if (mBinding.switch3.isEnabled) {
+                viewModel.increaseNumberOfSwitches()
+            } else {
+                viewModel.decreaseNumberOfSwitches()
+            }
+        }
+
+        mBinding.switch4.setOnClickListener {
+            if (mBinding.switch3.isEnabled) {
+                viewModel.increaseNumberOfSwitches()
+            } else {
+                viewModel.decreaseNumberOfSwitches()
+            }
+        }
     }
 }

@@ -6,4 +6,9 @@ interface SwitchRepository {
 
     suspend fun getNumberOfSwitches(): Long
 
+    suspend fun getNumberOfSelectedSwitches(): Int
+
+    suspend fun increaseNumberOfSwitches()
+
+    suspend fun decreaseNumberOfSwitches()
 }
